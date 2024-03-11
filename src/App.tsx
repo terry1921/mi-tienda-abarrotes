@@ -1,26 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './main.css';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import NotFoundPage from "./pages/NotFoundPage";
+import Header from "./components/Header";
+import ProductCore from "./components/ProductGrid/helper";
+import CategoryCore from "./components/CategoryList/helper";
+import {CartProvider} from "./components/CartContext";
+import Cart from "./components/Cart";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App: React.FC = () => {
+    return (
+        <CartProvider>
+            <Router>
+                {<Header/>}
+                <Routes>
+                    <Route path="/" element={<CategoryCore/>}/>
+                    <Route path="/products" element={<ProductCore/>}/>
+                    <Route path="/cart" element={<Cart/>}/>
+                    <Route path="/*" element={<NotFoundPage/>}/>
+                </Routes>
+            </Router>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={1000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
+        </CartProvider>
+    );
 }
 
 export default App;
