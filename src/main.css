@@ -6,9 +6,3 @@ html, body, #app, #app>div {
     background: #2F3E47;
     height: 100%
 }
-
-@media all and (display-mode: standalone) {
-    body {
-        background-color: yellow;
-    }
-}
