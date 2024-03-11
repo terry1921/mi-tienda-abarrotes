@@ -26,7 +26,7 @@ const Cart: React.FC = () => {
     if (cartItems.length === 0) {
         return (
             <div className="cart-container p-4">
-                <p className="text-white">Tu carrito está vacío.</p>;
+                <p className="text-white">Tu carrito está vacío.</p>
             </div>
         );
     }
