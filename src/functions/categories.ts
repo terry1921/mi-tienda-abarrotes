@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {Categories} from "../models/Category";
-import {API_URL, CACHE_DURATION, cacheKeys} from "../constants/commons";
+import {API_URL, CACHE_DURATION_12_HOURS, cacheKeys} from "../constants/commons";
 
 export const getCategories = async (): Promise<Categories> => {
     const cachedData = localStorage.getItem(cacheKeys.categories);
@@ -9,7 +9,7 @@ export const getCategories = async (): Promise<Categories> => {
         const {products, timestamp} = JSON.parse(cachedData);
 
         // Verificar si la caché aún es válida
-        if (now.getTime() - timestamp < CACHE_DURATION) {
+        if (now.getTime() - timestamp < CACHE_DURATION_12_HOURS) {
             return products; // Utilizar los datos de la caché
         }
     }

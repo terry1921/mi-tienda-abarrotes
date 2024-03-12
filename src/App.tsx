@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './main.css';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import NotFoundPage from "./pages/NotFoundPage";
@@ -11,6 +11,25 @@ import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 
 const App: React.FC = () => {
+    const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+    useEffect(() => {
+        const setOnline = () => setIsOnline(true);
+        const setOffline = () => setIsOnline(false);
+
+        window.addEventListener('online', setOnline);
+        window.addEventListener('offline', setOffline);
+
+        return () => {
+            window.removeEventListener('online', setOnline);
+            window.removeEventListener('offline', setOffline);
+        };
+    }, []);
+
+    if (!isOnline) {
+        // Mostrar un mensaje o banner indicando que el usuario está offline
+    }
+
     return (
         <CartProvider>
             <Router>
@@ -34,6 +53,7 @@ const App: React.FC = () => {
                 pauseOnHover
                 theme="dark"
             />
+            {!isOnline && <div className="text-white ">Estás en modo offline. Algunas características pueden no estar disponibles.</div>}
         </CartProvider>
     );
 }

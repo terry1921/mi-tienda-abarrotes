@@ -8,9 +8,13 @@ RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=package-lock.json,target=package-lock.json \
     npm ci --omit=dev
 
-USER node
-
 COPY . .
 
+RUN npm install -g serve
+RUN npm run build
+
+USER node
+
 EXPOSE 3000
-CMD npm start
+#CMD npm start
+CMD serve -s build

@@ -1,5 +1,5 @@
 export const API_URL = 'https://local-shop-api.fly.dev';
-export const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+export const CACHE_DURATION_12_HOURS = 12 * 60 * 60 * 1000; // 12 hours
 
 export const cacheKeys = {
     products: 'productsData',
