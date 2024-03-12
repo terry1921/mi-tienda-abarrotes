@@ -15,6 +15,7 @@ const ProductList: React.FC<ProductListProps> = ({category}) => {
     useEffect(() => {
         if (cartMessage) {
             toast.info(cartMessage, {
+                toastId: "cart-message",
                 position: "bottom-right",
                 autoClose: 1000,
                 hideProgressBar: true,

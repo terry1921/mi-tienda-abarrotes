@@ -1,6 +1,6 @@
 {
-  "short_name": "TiendApp",
-  "name": "Tienda app Sample Progressive Web App",
+  "short_name": "Shopping Cart",
+  "name": "Shopping Cart (Sample Progressive Web App)",
   "icons": [
     {
       "src": "favicon.ico",
